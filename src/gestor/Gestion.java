@@ -23,14 +23,47 @@ public class Gestion {
 		return anyadido;
 	}
 
-	public boolean modPrecio(Viaje viajecito) {
-		boolean modificado=true;
-		
-		setViaje(viajecito);
-		
-		return modificado;
-		
-	}
-	
+	public boolean borrarViaje(Viaje viajecito) {
+		boolean borrado = false;
+		int i = 0;
 
+		for (Viaje viaje : conjunto) {
+			if (viaje.equals(viajecito)) {
+				borrado = true;
+			}
+		}
+
+		if (borrado) {
+			conjunto.remove(viajecito);
+		}
+		return borrado;
+	}
+
+	public boolean modPrecio(Viaje viajecito) {
+		boolean modificado = true;
+
+		setPrecio(viajecito);
+
+		return modificado;
+
+	}
+
+	public boolean modFecha(Viaje viajecito) {
+		boolean modificado = true;
+
+		setFecha(viajecito);
+
+		return modificado;
+
+	}
+
+	public boolean modLugar(Viaje viajecito) {
+		boolean modificado = true;
+		setLugar(viajecito);
+		return modificado;
+	}
+
+	public void listar() {
+		System.out.print(conjunto);
+	}
 }
