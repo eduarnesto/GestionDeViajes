@@ -43,12 +43,20 @@ public class Viaje {
 		return lugar;
 	}
 
+	public String getFecha() {
+		return fecha;
+	}
+	
 	public void setFecha(String fecha) {
 		if (fecha != null && !fecha.equals("")) {
 			this.fecha = fecha;
 		}
 	}
 
+	public int getPrecio() {
+		return precio;
+	}
+	
 	public void setPrecio(int precio) {
 		if (precio > 0) {
 			this.precio = precio;
