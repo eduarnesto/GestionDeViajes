@@ -77,9 +77,9 @@ public class Viaje {
 	public String toString() {
 		String res = "";
 
-		res = "Lugar: " + this.lugar + "\n";
-		res = "Fecha: " + this.fecha + "\n";
-		res = "Precio: " + this.precio + "\n";
+		res += "Lugar: " + this.lugar + "\n";
+		res += "Fecha: " + this.fecha + "\n";
+		res += "Precio: " + this.precio + "\n";
 
 		return res;
 	}

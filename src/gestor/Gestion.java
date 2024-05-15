@@ -16,9 +16,9 @@ public class Gestion {
 	 * @param viajecito metemos el viaje que añadiremos al array
 	 * @return Devolvemos un booleano en caso de q ue se añada corectamente
 	 */
-	public boolean anyadirViaje(Viaje viajecito) {
+	public static boolean anyadirViaje(Viaje viajecito) {
 		boolean anyadido = true;
-
+		
 		for (Viaje viaje : conjunto) {
 			if (viaje.equals(viajecito)) {
 				anyadido = false;
@@ -28,6 +28,7 @@ public class Gestion {
 		if (anyadido) {
 			conjunto.add(viajecito);
 		}
+		
 		return anyadido;
 	}
 
@@ -36,9 +37,9 @@ public class Gestion {
 	 *@param viajecito metemos el viaje que borraremos al array
 	 * @return Devolvemos un booleano en caso de que se borre corectamente
 	 */
-	public boolean borrarViaje(Viaje viajecito) {
+	public static boolean borrarViaje(Viaje viajecito) {
 		boolean borrado = false;
-
+		
 		for (Viaje viaje : conjunto) {
 			if (viaje.equals(viajecito)) {
 				borrado = true;
@@ -48,6 +49,7 @@ public class Gestion {
 		if (borrado) {
 			conjunto.remove(viajecito);
 		}
+		
 		return borrado;
 	}
 
@@ -57,11 +59,12 @@ public class Gestion {
 	 * @param newPrecio en nuevo valor
 	 * @return Boolean en caso de que la accion se ha realizado sin problemas
 	 */
-	public boolean modPrecio(Viaje viajecito, int newPrecio) {
+	public static boolean modPrecio(Viaje viajecito, int newPrecio) {
 		boolean modificado = true;
-
+		
 		viajecito.setPrecio(newPrecio);
 
+		
 		return modificado;
 
 	}
@@ -71,11 +74,11 @@ public class Gestion {
 	 * @param newFecha el nuevo valor
 	 * @return Boolean en caso de que la accion se ha realizado sin problemas
 	 */
-	public boolean modFecha(Viaje viajecito, String newFecha) {
+	public static boolean modFecha(Viaje viajecito, String newFecha) {
 		boolean modificado = true;
-
+		
 		viajecito.setFecha(newFecha);
-
+		
 		return modificado;
 
 	}
@@ -83,7 +86,9 @@ public class Gestion {
 	/**
 	 * Para comprobar si está todo bien
 	 */
-	public void listar() {
-		System.out.print(conjunto);
+	public static void listar() {
+		for (Viaje viaje : conjunto) {
+			System.out.println(viaje);
+		}
 	}
 }

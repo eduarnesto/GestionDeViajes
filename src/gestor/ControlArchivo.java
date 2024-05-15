@@ -16,16 +16,17 @@ public class ControlArchivo {
 	/**
 	 * Para leer el archivo
 	 */
-	public void leerArchivo() {
+	static public void leerArchivo() {
 
 		String fecha;
 
 		String lugar;
 
 		int precio;
+		
+		Viaje viaje;
 
 		BufferedReader br = null;
-		{
 			try {
 
 				br = new BufferedReader(new FileReader("src/gestor/datosTurismo.txt"));
@@ -36,18 +37,21 @@ public class ControlArchivo {
 
 				while (linea != null) {
 
-					String[] viaje = linea.split("::");
+					String[] viajes = linea.split("::");
 
-					lugar = viaje[0];
+					lugar = viajes[0];
 
-					fecha = viaje[1];
+					fecha = viajes[1];
 
-					precio = Integer.parseInt(viaje[2]);
+					precio = Integer.parseInt(viajes[2]);
 
 					try {
-						new Viaje(lugar, fecha, precio);
+						viaje = new Viaje(lugar, fecha, precio);
+						Gestion.anyadirViaje(viaje);
 					} catch (ExcepcionLugar | ExcepcionFecha | ExcepcionPrecio e) {
 						
+					} finally {
+						linea = br.readLine();
 					}
 
 				}
@@ -73,13 +77,12 @@ public class ControlArchivo {
 				}
 
 			}
-		}
-	}
+	} //Fin leerArchivo
 	
 	/**
 	 * Para escribir 
 	 */
-	public void imprimirArchivo() {
+	static public void imprimirArchivo() {
 
 		//BufferedWriter para escribir
 		BufferedWriter bw = null;
