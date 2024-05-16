@@ -9,35 +9,43 @@ public class Viaje {
 	 * Destino del viaje
 	 */
 	private String lugar = "";
-	
+
 	/**
 	 * Fecha del viaje
 	 */
 	private String fecha = "";
-	
+
 	/**
 	 * Precio del viaje
 	 */
-	private int precio = 0;
+	private float precio;
 
 	/**
 	 * Constructor con parametros de la clase viajes
-	 * @param lugar Destino del viaje
-	 * @param fecha Fecha del viaje
+	 * 
+	 * @param lugar  Destino del viaje
+	 * @param fecha  Fecha del viaje
 	 * @param precio Precio del viaje
-	 * @throws ExcepcionLugar Excepcion si el lugar no es correcto
-	 * @throws ExcepcionFecha Excepcion si la fecha no es correcta
+	 * @throws ExcepcionLugar  Excepcion si el lugar no es correcto
+	 * @throws ExcepcionFecha  Excepcion si la fecha no es correcta
 	 * @throws ExcepcionPrecio Excepcion si el precio no es correcto
 	 */
-	public Viaje(String lugar, String fecha, int precio) throws ExcepcionLugar, ExcepcionFecha, ExcepcionPrecio {
-		//Comprobamos que el lugar es valido
+	public Viaje(String lugar, String fecha, float precio) throws ExcepcionLugar, ExcepcionFecha, ExcepcionPrecio {
+		// Comprobamos que el precio es valido
+		if (precio > 0) {
+			this.precio = precio;
+		} else {
+			throw new ExcepcionPrecio();
+		}
+
+		// Comprobamos que el lugar es valido
 		if (lugar != null && !lugar.equals(fecha)) {
 			this.lugar = lugar;
 		} else {
 			throw new ExcepcionLugar();
 		}
 
-		//Comprobamos que la fecha es valida
+		// Comprobamos que la fecha es valida
 		if (fecha != null && !fecha.equals("") && fecha.length() == 10) {
 			String dia = fecha.substring(0, 2);
 			if (Integer.valueOf(dia) > 0 && Integer.valueOf(dia) < 32) {
@@ -53,31 +61,25 @@ public class Viaje {
 		} else {
 			throw new ExcepcionFecha();
 		}
-
-		//Comprobamos que el precio es valido
-		if (precio > 0) {
-			this.precio = precio;
-		} else {
-			throw new ExcepcionPrecio();
-		}
 	}
 
 	/**
 	 * Constructor con parametros de la clase viajes sin precio
+	 * 
 	 * @param lugar Destino del viaje
 	 * @param fecha Fecha del viaje
 	 * @throws ExcepcionLugar Excepcion si el lugar no es correcto
 	 * @throws ExcepcionFecha Excepcion si la fecha no es correcta
 	 */
 	public Viaje(String lugar, String fecha) throws ExcepcionLugar, ExcepcionFecha {
-		//Comprobamos que el lugar es valido
-		if (lugar != null && !lugar.equals(fecha)) {
+		// Comprobamos que el lugar es valido
+		if (lugar != null && !lugar.equals("")) {
 			this.lugar = lugar;
 		} else {
 			throw new ExcepcionLugar();
 		}
 
-		//Comprobamos que la fecha es valida
+		// Comprobamos que la fecha es valida
 		if (fecha != null && !fecha.equals("") && fecha.length() == 10) {
 			String dia = fecha.substring(0, 2);
 			if (Integer.valueOf(dia) > 0 && Integer.valueOf(dia) < 32) {
@@ -94,9 +96,10 @@ public class Viaje {
 			throw new ExcepcionFecha();
 		}
 	}
-	
+
 	/**
 	 * Metodo para obtener el destino de un viaje
+	 * 
 	 * @return Destino del viaje
 	 */
 	public String getLugar() {
@@ -105,14 +108,16 @@ public class Viaje {
 
 	/**
 	 * Metodo para obtener la fecha de un viaje
+	 * 
 	 * @return Fecha de un viaje
 	 */
 	public String getFecha() {
 		return fecha;
 	}
-	
+
 	/**
 	 * Metodo para cambiar la fecha de un viaje
+	 * 
 	 * @param fecha Fecha del viaje
 	 */
 	public void setFecha(String fecha) {
@@ -123,17 +128,19 @@ public class Viaje {
 
 	/**
 	 * Metodo para obtener el precio de un viaje
+	 * 
 	 * @return Precio de un viaje
 	 */
-	public int getPrecio() {
+	public float getPrecio() {
 		return precio;
 	}
-	
+
 	/**
 	 * Metodo para cambiar el precio de un viaje
+	 * 
 	 * @param fecha Precio del viaje
 	 */
-	public void setPrecio(int precio) {
+	public void setPrecio(float precio) {
 		if (precio > 0) {
 			this.precio = precio;
 		}

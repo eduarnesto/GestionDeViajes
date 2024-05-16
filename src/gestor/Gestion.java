@@ -24,10 +24,10 @@ public class Gestion {
 	 * @throws ExcepcionLugar 
 	 * @throws ExcepcionPrecio
 	 */
-	public static boolean anyadirViaje(String lugar, String fecha, int precio) throws ExcepcionLugar, ExcepcionFecha, ExcepcionPrecio {
+	public static boolean anyadirViaje(String lugar, String fecha, float precio) throws ExcepcionLugar, ExcepcionFecha, ExcepcionPrecio {
 		boolean anyadido = true;
 		
-		Viaje viajecito=new Viaje(lugar,fecha);
+		Viaje viajecito=new Viaje(lugar,fecha, precio);
 		
 		for (Viaje viaje : conjunto) {
 			if (viaje.equals(viajecito)) {
@@ -77,7 +77,7 @@ public class Gestion {
 	 * @throws ExcepcionFecha 
 	 * @throws ExcepcionLugar 
 	 */
-	public static boolean modPrecio(String lugar, String fecha, int newPrecio) throws ExcepcionLugar, ExcepcionFecha {
+	public static boolean modPrecio(String lugar, String fecha, float newPrecio) throws ExcepcionLugar, ExcepcionFecha {
 		boolean modificado = false;
 		
 		Viaje viajecito = new Viaje(lugar, fecha);

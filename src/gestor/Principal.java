@@ -14,11 +14,8 @@ public class Principal {
 		// Creamos la variable donde guardaremos la opcion elegida por el usuario
 		int opcion;
 		// Creamos la entrada al programa
-		System.out.println("Hola");
 		do {
-			System.out.println("Hola");
 			ControlArchivo.leerArchivo();
-			System.out.println("Hola");
 			// Llamamos al menu
 			menu();
 			// Guardamos la opcion dada por el usuario
@@ -72,15 +69,15 @@ public class Principal {
 		scanner.close();
 	}
 
-	private static void borrarViaje(){
-		String lugar="";
-		String fecha="";
-		System.out.print("Lugar del viaje a eliminar: ");
-		lugar = scanner.nextLine();
-		System.out.print("Fecha del viaje a eliminar: ");
-		fecha = scanner.nextLine();
+	private static void borrarViaje() {
+		String lugar;
+		String fecha;
+
+		lugar = preguntarLugar();
+		fecha = preguntarFecha();
+
 		try {
-			Gestion.borrarViaje(lugar,fecha);
+			Gestion.borrarViaje(lugar, fecha);
 		} catch (ExcepcionLugar | ExcepcionFecha e) {
 			System.out.println("Datos añadidos no válidos");
 		}
@@ -90,17 +87,15 @@ public class Principal {
 		String lugar;
 		String fecha;
 		int opc;
-		
-		System.out.print("Destino del viaje a modificar: ");
-		lugar = scanner.nextLine();
 
-		System.out.print("Fecha del viaje a modificar: ");
-		fecha = scanner.nextLine();
-		
+		lugar = preguntarLugar();
+
+		fecha = preguntarFecha();
+
 		menuModificar();
 		opc = scanner.nextInt();
 		scanner.nextLine();
-		
+
 		switch (opc) {
 		case 1: {
 			modificarFecha(lugar, fecha);
@@ -118,44 +113,41 @@ public class Principal {
 	public static void modificarFecha(String lugar, String fecha) {
 		boolean modificado;
 		String fechaNueva;
-		
-		System.out.println("Introduzca la nueva fecha");
-		fechaNueva = scanner.nextLine();
-		
+
+		fechaNueva = preguntarFecha();
+
 		try {
 			modificado = Gestion.modFecha(lugar, fecha, fechaNueva);
 		} catch (ExcepcionLugar | ExcepcionFecha e) {
 			modificado = false;
 		}
-		
+
 		if (modificado) {
 			System.out.println("Se ha modificado la fecha");
 		} else {
 			System.out.println("No se ha podido modificar la fecha");
 		}
 	}
-	
+
 	public static void modificarPrecio(String lugar, String fecha) {
 		boolean modificado;
-		int precioNuevo;
-		
-		System.out.println("Introduzca el nuevo precio");
-		precioNuevo = scanner.nextInt();
-		scanner.nextInt();
-		
+		float precioNuevo;
+
+		precioNuevo = preguntarPrecio();
+
 		try {
 			modificado = Gestion.modPrecio(lugar, fecha, precioNuevo);
 		} catch (ExcepcionLugar | ExcepcionFecha e) {
 			modificado = false;
 		}
-		
+
 		if (modificado) {
 			System.out.println("Se ha modificado el precio");
 		} else {
 			System.out.println("No se ha podido modificar el precio");
 		}
 	}
-	
+
 	public static void menuModificar() {
 		System.out.println("¿Qué parametro quieres modificar?");
 		System.out.println("1.- Fecha");
@@ -170,23 +162,16 @@ public class Principal {
 		// variable que guarda la fecha del nuevo viaje
 		String fecha;
 		// variable que guarda el precio del nuevo viaje
-		int precio;
+		float precio;
 
-		// ahora le pedimos por consola los datos al usuario
-		System.out.print("Lugar del viaje: ");
+		// Ahora le pedimos por consola los datos al usuario
+		lugar = preguntarLugar();
 
-		lugar = scanner.nextLine();
+		fecha = preguntarFecha();
 
-		System.out.print("Fecha del viaje (DD/MM/AAAA): ");
+		precio = preguntarPrecio();
 
-		fecha = scanner.nextLine();
-
-		System.out.print("Precio del viaje: ");
-
-		precio = scanner.nextInt();
-		// comprobamos si el viaje ya existe y si se ha podido añadir
-	
-
+		// Comprobamos si el viaje ya existe y si se ha podido añadir
 		try {
 			if (Gestion.anyadirViaje(lugar, fecha, precio)) {
 				System.out.println("Viaje añadido correctamente");
@@ -197,6 +182,46 @@ public class Principal {
 			System.out.println("Datos introducidos no validos");
 		}
 
+	}
+
+	public static float preguntarPrecio() {
+		float precio;
+		do {
+			System.out.print("Precio del viaje: ");
+			precio = scanner.nextInt();
+		} while (precio <= 0);
+		return precio;
+	}
+
+	public static String preguntarFecha() {
+		String fecha;
+		boolean correcto = false;
+
+		do {
+			System.out.print("Fecha del viaje (DD/MM/AAAA): ");
+			fecha = scanner.nextLine();
+
+			if (fecha != null && !fecha.equals("") && fecha.length() == 10) {
+				String dia = fecha.substring(0, 2);
+				if (Integer.valueOf(dia) > 0 && Integer.valueOf(dia) < 32) {
+					String mes = fecha.substring(3, 5);
+					if (Integer.valueOf(mes) > 0 && Integer.valueOf(mes) < 13) {
+						correcto = true;
+					}
+				}
+			}
+		} while (!correcto);
+
+		return fecha;
+	}
+
+	public static String preguntarLugar() {
+		String lugar;
+		do {
+			System.out.print("Lugar del viaje: ");
+			lugar = scanner.nextLine();
+		} while (lugar != null && !lugar.equals(""));
+		return lugar;
 	}
 
 	// funcion para imprimir el menu por consola

@@ -22,7 +22,7 @@ public class ControlArchivo {
 
 		String lugar;
 
-		int precio;
+		float precio;
 
 		BufferedReader br = null;
 			try {
@@ -42,7 +42,7 @@ public class ControlArchivo {
 					fecha = viajes[1];
 
 					precio = Integer.parseInt(viajes[2]);
-
+					
 					try {
 						Gestion.anyadirViaje(lugar, fecha, precio);
 					} catch (ExcepcionLugar | ExcepcionFecha | ExcepcionPrecio e) {
@@ -87,7 +87,7 @@ public class ControlArchivo {
 			try {
 
 				//Lo inicializamos
-				bw = new BufferedWriter(new FileWriter("src/gestor/datosTurismo.txt"));
+				bw = new BufferedWriter(new FileWriter("src/gestor/datosTurismo.txt", true));
 
 
 				//Recorre el array y va pintando los atributos de cada objeto 
@@ -96,7 +96,7 @@ public class ControlArchivo {
 					bw.write("::");
 					bw.write(viaje.getFecha());
 					bw.write("::");
-					bw.write(viaje.getPrecio());
+					bw.write((int) viaje.getPrecio());
 					//Siguiente linea
 					bw.newLine();
 				}
