@@ -55,29 +55,44 @@ public class Gestion {
 
 	/**
 	 * Para modificar el precio
-	 * @param viajecito De que viaje lo queremos modificar
+	 * @param lugar Junto con la fecha para referirnos a un viaje
+	 * @param fecha Junto con el lugar para referirnos a un viaje
 	 * @param newPrecio en nuevo valor
 	 * @return Boolean en caso de que la accion se ha realizado sin problemas
 	 */
-	public static boolean modPrecio(Viaje viajecito, int newPrecio) {
-		boolean modificado = true;
+	public static boolean modPrecio(String lugar, String fecha, int newPrecio) {
+		boolean modificado = false;
 		
-		viajecito.setPrecio(newPrecio);
-
+		Viaje viajecito = new Viaje(lugar, fecha);
+		
+		for (Viaje viaje : conjunto) {
+			if (viaje.equals(viajecito)) {
+				viaje.setPrecio(newPrecio);
+				modificado=true;
+			}
+		}
 		
 		return modificado;
 
 	}
 	/**
 	 * Para modificar la Fecha
-	 * @param viajecito De que viaje lo queremos modificar
+	 * @param lugar Junto con la fecha antigua para referirnos a un viaje
+	 * @param oldFecha Junto con el lugar para referirnos a un viaje
 	 * @param newFecha el nuevo valor
 	 * @return Boolean en caso de que la accion se ha realizado sin problemas
 	 */
-	public static boolean modFecha(Viaje viajecito, String newFecha) {
-		boolean modificado = true;
+	public static boolean modFecha(String lugar, String oldFecha , String newFecha) {
+		boolean modificado = false;
 		
-		viajecito.setFecha(newFecha);
+		Viaje viajecito = new Viaje(lugar, oldFecha);
+		
+		for (Viaje viaje : conjunto) {
+			if (viaje.equals(viajecito)) {
+				viajecito.setFecha(newFecha);
+				modificado=true;
+			}
+		}
 		
 		return modificado;
 
