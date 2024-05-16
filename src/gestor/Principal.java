@@ -93,9 +93,11 @@ public class Principal {
 		
 		switch (opc) {
 		case 1: {
+			modificarFecha(lugar, fecha);
 			break;
 		}
 		case 2: {
+			modificarPrecio(lugar, fecha);
 			break;
 		}
 		default:
@@ -103,8 +105,37 @@ public class Principal {
 		}
 	}
 
-	public static void modificarFecha() {
+	public static void modificarFecha(String lugar, String fecha) {
+		boolean modificado;
+		String fechaNueva;
 		
+		System.out.println("Introduzca la nueva fecha");
+		fechaNueva = scanner.nextLine();
+		
+		modificado = Gestion.modFecha(lugar, fecha, fechaNueva);
+		
+		if (modificado) {
+			System.out.println("Se ha modificado la fecha");
+		} else {
+			System.out.println("No se ha podido modificar la fecha");
+		}
+	}
+	
+	public static void modificarPrecio(String lugar, String fecha) {
+		boolean modificado;
+		int precioNuevo;
+		
+		System.out.println("Introduzca el nuevo precio");
+		precioNuevo = scanner.nextInt();
+		scanner.nextInt();
+		
+		modificado = Gestion.modPrecio(lugar, fecha, precioNuevo);
+		
+		if (modificado) {
+			System.out.println("Se ha modificado el precio");
+		} else {
+			System.out.println("No se ha podido modificar el precio");
+		}
 	}
 	
 	public static void menuModificar() {
