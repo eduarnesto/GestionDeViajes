@@ -39,7 +39,7 @@ public class Viaje {
 		}
 
 		// Comprobamos que el lugar es valido
-		if (lugar != null && !lugar.equals(fecha)) {
+		if (lugar != null && lugar.equals("")) {
 			this.lugar = lugar;
 		} else {
 			throw new ExcepcionLugar();
@@ -73,7 +73,7 @@ public class Viaje {
 	 */
 	public Viaje(String lugar, String fecha) throws ExcepcionLugar, ExcepcionFecha {
 		// Comprobamos que el lugar es valido
-		if (lugar != null && !lugar.equals("")) {
+		if (lugar != null && lugar.equals("")) {
 			this.lugar = lugar;
 		} else {
 			throw new ExcepcionLugar();

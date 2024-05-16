@@ -186,10 +186,14 @@ public class Principal {
 
 	public static float preguntarPrecio() {
 		float precio;
-		do {
-			System.out.print("Precio del viaje: ");
+		
+		System.out.print("Precio del viaje: ");
+		precio = scanner.nextInt();
+		
+		while (precio <= 0) {
+			System.out.print("Precio no válido, introduzca otro: ");
 			precio = scanner.nextInt();
-		} while (precio <= 0);
+		}
 		return precio;
 	}
 
@@ -210,6 +214,11 @@ public class Principal {
 					}
 				}
 			}
+			
+			if (!correcto) {
+				System.out.println("Fecha introducida no válida");
+			}
+			
 		} while (!correcto);
 
 		return fecha;
@@ -217,10 +226,14 @@ public class Principal {
 
 	public static String preguntarLugar() {
 		String lugar;
-		do {
-			System.out.print("Lugar del viaje: ");
+		
+		System.out.print("Lugar del viaje: ");
+		lugar = scanner.nextLine();
+		
+		while (lugar != null && lugar.equals("")) {
+			System.out.print("Destino no válido, introduzca otro: ");
 			lugar = scanner.nextLine();
-		} while (lugar != null && !lugar.equals(""));
+		}
 		return lugar;
 	}
 
