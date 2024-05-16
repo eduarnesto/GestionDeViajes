@@ -63,6 +63,39 @@ public class Viaje {
 	}
 
 	/**
+	 * Constructor con parametros de la clase viajes sin precio
+	 * @param lugar Destino del viaje
+	 * @param fecha Fecha del viaje
+	 * @throws ExcepcionLugar Excepcion si el lugar no es correcto
+	 * @throws ExcepcionFecha Excepcion si la fecha no es correcta
+	 */
+	public Viaje(String lugar, String fecha) throws ExcepcionLugar, ExcepcionFecha {
+		//Comprobamos que el lugar es valido
+		if (lugar != null && !lugar.equals(fecha)) {
+			this.lugar = lugar;
+		} else {
+			throw new ExcepcionLugar();
+		}
+
+		//Comprobamos que la fecha es valida
+		if (fecha != null && !fecha.equals("") && fecha.length() == 10) {
+			String dia = fecha.substring(0, 2);
+			if (Integer.valueOf(dia) > 0 && Integer.valueOf(dia) < 32) {
+				String mes = fecha.substring(3, 5);
+				if (Integer.valueOf(mes) > 0 && Integer.valueOf(mes) < 13) {
+					this.fecha = fecha;
+				} else {
+					throw new ExcepcionFecha();
+				}
+			} else {
+				throw new ExcepcionFecha();
+			}
+		} else {
+			throw new ExcepcionFecha();
+		}
+	}
+	
+	/**
 	 * Metodo para obtener el destino de un viaje
 	 * @return Destino del viaje
 	 */

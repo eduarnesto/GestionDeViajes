@@ -40,13 +40,7 @@ public class Principal {
 			// el siguiente modifica viajes
 			case 3:
 
-				System.out.print("Lugar del viaje a modificar: ");
-
-				String lugarModificar = scanner.nextLine();
-
-				System.out.print("Nuevo precio del viaje: ");
-
-				double nuevoPrecio = scanner.nextDouble();
+				modificaViaje();
 
 				break;
 			// el siguiente llama a la funcion que los elimina
@@ -80,6 +74,44 @@ public class Principal {
 		} while (opcion != 9);
 		// cerramosel scanner para terminar el main
 		scanner.close();
+	}
+
+	private static void modificaViaje() {
+		String lugar;
+		String fecha;
+		int opc;
+		
+		System.out.print("Destino del viaje a modificar: ");
+		lugar = scanner.nextLine();
+
+		System.out.print("Fecha del viaje a modificar: ");
+		fecha = scanner.nextLine();
+		
+		menuModificar();
+		opc = scanner.nextInt();
+		scanner.nextLine();
+		
+		switch (opc) {
+		case 1: {
+			break;
+		}
+		case 2: {
+			break;
+		}
+		default:
+			System.out.println("Opción no válida");
+		}
+	}
+
+	public static void modificarFecha() {
+		
+	}
+	
+	public static void menuModificar() {
+		System.out.println("¿Qué parametro quieres modificar?");
+		System.out.println("1.- Fecha");
+		System.out.println("2.- precio");
+		System.out.println("Elija una opción");
 	}
 
 	// esta funcion es la que nos ayuda a añadir nuevos viajes
