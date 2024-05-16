@@ -122,7 +122,11 @@ public class Principal {
 		System.out.println("Introduzca la nueva fecha");
 		fechaNueva = scanner.nextLine();
 		
-		modificado = Gestion.modFecha(lugar, fecha, fechaNueva);
+		try {
+			modificado = Gestion.modFecha(lugar, fecha, fechaNueva);
+		} catch (ExcepcionLugar | ExcepcionFecha e) {
+			modificado = false;
+		}
 		
 		if (modificado) {
 			System.out.println("Se ha modificado la fecha");
@@ -139,7 +143,11 @@ public class Principal {
 		precioNuevo = scanner.nextInt();
 		scanner.nextInt();
 		
-		modificado = Gestion.modPrecio(lugar, fecha, precioNuevo);
+		try {
+			modificado = Gestion.modPrecio(lugar, fecha, precioNuevo);
+		} catch (ExcepcionLugar | ExcepcionFecha e) {
+			modificado = false;
+		}
 		
 		if (modificado) {
 			System.out.println("Se ha modificado el precio");
@@ -163,8 +171,7 @@ public class Principal {
 		String fecha;
 		// variable que guarda el precio del nuevo viaje
 		int precio;
-		// variable para comprobar si ese viaje ya existe
-		Viaje viaje = null;
+
 		// ahora le pedimos por consola los datos al usuario
 		System.out.print("Lugar del viaje: ");
 

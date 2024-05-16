@@ -23,8 +23,6 @@ public class ControlArchivo {
 		String lugar;
 
 		int precio;
-		
-		Viaje viaje;
 
 		BufferedReader br = null;
 			try {
