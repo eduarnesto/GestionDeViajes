@@ -46,8 +46,7 @@ public class ControlArchivo {
 					precio = Integer.parseInt(viajes[2]);
 
 					try {
-						viaje = new Viaje(lugar, fecha, precio);
-						Gestion.anyadirViaje(viaje);
+						Gestion.anyadirViaje(lugar, fecha, precio);
 					} catch (ExcepcionLugar | ExcepcionFecha | ExcepcionPrecio e) {
 						
 					} finally {

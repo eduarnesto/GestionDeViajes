@@ -10,7 +10,7 @@ public class Principal {
 //Creamos el scanner para poder leer por consola
 	static Scanner scanner = new Scanner(System.in);
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws ExcepcionLugar, ExcepcionFecha {
 		// Creamos la variable donde guardaremos la opcion elegida por el usuario
 		int opcion;
 		// Creamos la entrada al programa
@@ -46,11 +46,7 @@ public class Principal {
 			// el siguiente llama a la funcion que los elimina
 			case 4:
 
-				System.out.print("Lugar del viaje a eliminar: ");
-
-				lugar = scanner.nextLine();
-
-				Gestion.borrarViaje(lugar);
+				borrarViaje();
 
 				break;
 			// este llama a la funcion que almacena y actualiza todos los cambios
@@ -74,6 +70,20 @@ public class Principal {
 		} while (opcion != 9);
 		// cerramosel scanner para terminar el main
 		scanner.close();
+	}
+
+	private static void borrarViaje(){
+		String lugar="";
+		String fecha="";
+		System.out.print("Lugar del viaje a eliminar: ");
+		lugar = scanner.nextLine();
+		System.out.print("Fecha del viaje a eliminar: ");
+		fecha = scanner.nextLine();
+		try {
+			Gestion.borrarViaje(lugar,fecha);
+		} catch (ExcepcionLugar | ExcepcionFecha e) {
+			System.out.println("Datos añadidos no válidos");
+		}
 	}
 
 	private static void modificaViaje() {
@@ -137,16 +147,16 @@ public class Principal {
 
 		precio = scanner.nextInt();
 		// comprobamos si el viaje ya existe y si se ha podido añadir
-		try {
-			viaje = new Viaje(lugar, fecha, precio);
-		} catch (ExcepcionLugar | ExcepcionFecha | ExcepcionPrecio e) {
-			System.out.println("Datos introducidos no válidos");
-		}
+	
 
-		if (Gestion.anyadirViaje(viaje)) {
-			System.out.println("Viaje añadido correctamente");
-		} else {
-			System.out.println("No se ha podido añadir el viaje");
+		try {
+			if (Gestion.anyadirViaje(lugar, fecha, precio)) {
+				System.out.println("Viaje añadido correctamente");
+			} else {
+				System.out.println("No se ha podido añadir el viaje");
+			}
+		} catch (ExcepcionLugar | ExcepcionFecha | ExcepcionPrecio e) {
+			System.out.println("Datos introducidos no validos");
 		}
 
 	}

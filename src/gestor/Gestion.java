@@ -2,6 +2,10 @@ package gestor;
 
 import java.util.HashSet;
 
+import excepciones.ExcepcionFecha;
+import excepciones.ExcepcionLugar;
+import excepciones.ExcepcionPrecio;
+
 /**
  * Clase para gestionar el conjunto de viajes
  */
@@ -13,11 +17,17 @@ public class Gestion {
 
 	/**
 	 * Metodo para añadir viajes al array
-	 * @param viajecito metemos el viaje que añadiremos al array
+	 * @param lugar Junto con la fecha para referirnos a un viaje
+	 * @param fecha Junto con el lugar para referirnos a un viaje
 	 * @return Devolvemos un booleano en caso de q ue se añada corectamente
+	 * @throws ExcepcionFecha 
+	 * @throws ExcepcionLugar 
+	 * @throws ExcepcionPrecio
 	 */
-	public static boolean anyadirViaje(Viaje viajecito) {
+	public static boolean anyadirViaje(String lugar, String fecha, int precio) throws ExcepcionLugar, ExcepcionFecha, ExcepcionPrecio {
 		boolean anyadido = true;
+		
+		Viaje viajecito=new Viaje(lugar,fecha);
 		
 		for (Viaje viaje : conjunto) {
 			if (viaje.equals(viajecito)) {
@@ -34,11 +44,16 @@ public class Gestion {
 
 	/**
 	 * Metodo para borrar el viaje del array
-	 *@param viajecito metemos el viaje que borraremos al array
+	 * @param lugar Junto con la fecha para referirnos a un viaje
+	 * @param fecha Junto con el lugar para referirnos a un viaje
 	 * @return Devolvemos un booleano en caso de que se borre corectamente
+	 * @throws ExcepcionFecha 
+	 * @throws ExcepcionLugar 
 	 */
-	public static boolean borrarViaje(Viaje viajecito) {
+	public static boolean borrarViaje(String lugar, String fecha) throws ExcepcionLugar, ExcepcionFecha {
 		boolean borrado = false;
+		
+		Viaje viajecito=new Viaje(lugar,fecha);
 		
 		for (Viaje viaje : conjunto) {
 			if (viaje.equals(viajecito)) {
@@ -59,8 +74,10 @@ public class Gestion {
 	 * @param fecha Junto con el lugar para referirnos a un viaje
 	 * @param newPrecio en nuevo valor
 	 * @return Boolean en caso de que la accion se ha realizado sin problemas
+	 * @throws ExcepcionFecha 
+	 * @throws ExcepcionLugar 
 	 */
-	public static boolean modPrecio(String lugar, String fecha, int newPrecio) {
+	public static boolean modPrecio(String lugar, String fecha, int newPrecio) throws ExcepcionLugar, ExcepcionFecha {
 		boolean modificado = false;
 		
 		Viaje viajecito = new Viaje(lugar, fecha);
@@ -81,8 +98,10 @@ public class Gestion {
 	 * @param oldFecha Junto con el lugar para referirnos a un viaje
 	 * @param newFecha el nuevo valor
 	 * @return Boolean en caso de que la accion se ha realizado sin problemas
+	 * @throws ExcepcionFecha 
+	 * @throws ExcepcionLugar 
 	 */
-	public static boolean modFecha(String lugar, String oldFecha , String newFecha) {
+	public static boolean modFecha(String lugar, String oldFecha , String newFecha) throws ExcepcionLugar, ExcepcionFecha {
 		boolean modificado = false;
 		
 		Viaje viajecito = new Viaje(lugar, oldFecha);
