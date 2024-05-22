@@ -41,7 +41,7 @@ public class ControlArchivo {
 
 					fecha = viajes[1];
 
-					precio = Integer.parseInt(viajes[2]);
+					precio = Float.parseFloat(viajes[2]);
 					
 					try {
 						Gestion.anyadirViaje(lugar, fecha, precio);
@@ -96,7 +96,7 @@ public class ControlArchivo {
 					bw.write("::");
 					bw.write(viaje.getFecha());
 					bw.write("::");
-					bw.write((int) viaje.getPrecio());
+					bw.write(String.valueOf(viaje.getPrecio()));
 					//Siguiente linea
 					bw.newLine();
 				}

@@ -13,6 +13,9 @@ public class Principal {
 	public static void main(String[] args) throws ExcepcionLugar, ExcepcionFecha {
 		// Creamos la variable donde guardaremos la opcion elegida por el usuario
 		int opcion;
+		
+		System.out.println("Bienvenido al gestor de viajes Volando Voy");
+		
 		// Creamos la entrada al programa
 		do {
 			ControlArchivo.leerArchivo();
@@ -62,7 +65,8 @@ public class Principal {
 
 			}
 
-		} while (opcion != 9);
+		} while (opcion != 6);
+		
 		// cerramosel scanner para terminar el main
 		scanner.close();
 	}
@@ -237,14 +241,13 @@ public class Principal {
 
 	// funcion para imprimir el menu por consola
 	public static void menu() {
-		System.out.println("Bienvenido al gestor de viajes Volando Voy");
+		System.out.println("Seleccione una opción: ");
 		System.out.println("1. Ver viajes disponibles");
 		System.out.println("2. Añadir un nuevo viaje");
 		System.out.println("3. Modificar un viaje existente");
 		System.out.println("4. Eliminar un viaje existente");
 		System.out.println("5. Guardar cambios");
 		System.out.println("6. Salir");
-		System.out.print("Seleccione una opción: ");
 	}
 
 }
