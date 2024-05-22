@@ -39,7 +39,7 @@ public class Viaje {
 		}
 
 		// Comprobamos que el lugar es valido
-		if (lugar != null && lugar.equals("")) {
+		if (lugar != null && !lugar.equals("")) {
 			this.lugar = lugar;
 		} else {
 			throw new ExcepcionLugar();

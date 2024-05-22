@@ -36,13 +36,11 @@ public class Principal {
 
 			// el siguiente modifica viajes
 			case 3:
-
 				modificaViaje();
 
 				break;
 			// el siguiente llama a la funcion que los elimina
 			case 4:
-
 				borrarViaje();
 
 				break;

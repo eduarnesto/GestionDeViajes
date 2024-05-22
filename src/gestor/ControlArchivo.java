@@ -87,7 +87,7 @@ public class ControlArchivo {
 			try {
 
 				//Lo inicializamos
-				bw = new BufferedWriter(new FileWriter("src/gestor/datosTurismo.txt", true));
+				bw = new BufferedWriter(new FileWriter("src/gestor/datosTurismo.txt"));
 
 
 				//Recorre el array y va pintando los atributos de cada objeto 
@@ -113,8 +113,8 @@ public class ControlArchivo {
 
 				try {
 
-					bw.close();
 					bw.flush();
+					bw.close();
 
 				} catch (IOException e) {
 
